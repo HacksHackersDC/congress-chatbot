@@ -6,7 +6,7 @@ $search_type = 'members';
 
 $url = 'https://api.propublica.org/congress/v1/'. $congress .'/'. $chamber .'/'. $search_type . '.json';
 
-$key = 'W5trnjlbN0YYETRJ0NPfW0lhXVBksd3KHUltT1GE';
+$key = '';
 
 // Start CURL
 $ch = curl_init();
