@@ -29,14 +29,15 @@ function praseAPI($url) {
 // User Input values
 $input_name = 'Tim Kaine';
 
-// Output
-$getmembers = praseAPI( $base_url . '115/senate/members.json');
-
+// Get first name and last name from user input. 
 $name = explode(" ", $input_name);
 $first_name = $name[0];
 $last_name = $name[1];
 
-echo $first_name . $last_name;
+
+// Get list of members, search and find the member by $first_name and $last_name;
+$getmembers = praseAPI( $base_url . '115/senate/members.json');
+
 
 // $last_name = '';
 
