@@ -1,10 +1,12 @@
 <?php
 
-$congress = '113';
+$congress = '115';
 $chamber = 'senate';
 $search_type = 'members';
 
-$url = 'https://api.propublica.org/congress/v1/'. $congress .'/'. $chamber .'/'. $search_type . '.json';
+// $url = 'https://api.propublica.org/congress/v1/'. $congress .'/'. $chamber .'/'. $search_type . '.json';
+
+$url = 'https://api.propublica.org/congress/v1/bills/search.json?query=health';
 
 $key = 'W5trnjlbN0YYETRJ0NPfW0lhXVBksd3KHUltT1GE';
 
