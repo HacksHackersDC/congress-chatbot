@@ -8,7 +8,7 @@ $search_type = 'members';
 
 $url = 'https://api.propublica.org/congress/v1/bills/search.json?query=health';
 
-$key = 'W5trnjlbN0YYETRJ0NPfW0lhXVBksd3KHUltT1GE';
+$key = '';
 
 // Start CURL
 $ch = curl_init();
