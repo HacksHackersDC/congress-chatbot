@@ -1,14 +1,25 @@
 <?php
 
+// API.
+include ('key.php'); 
+
+// Variables
 $congress = '115';
 $chamber = 'senate';
 $search_type = 'members';
+$name = '';
+$key = '';
+
 
 // $url = 'https://api.propublica.org/congress/v1/'. $congress .'/'. $chamber .'/'. $search_type . '.json';
 
 $url = 'https://api.propublica.org/congress/v1/bills/search.json?query=health';
 
-$key = '';
+
+function praseAPI($url) {
+
+}
+
 
 // Start CURL
 $ch = curl_init();
@@ -21,11 +32,12 @@ curl_close($ch);
 
 // Save results into .JSON file (for caching);
 // If file does not exist create it type thing.
-
-
 // using data from the saved arrays, create print array calls for specific objects
 
 echo '<pre>' . $result . '</pre>';
+
+
+
 
 
 ?>
