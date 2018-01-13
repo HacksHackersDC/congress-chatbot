@@ -23,6 +23,11 @@ function getData($url){
     return $result;
 }
 
+// Global Var
+$session = '115';
+$message = null;
+$display_text = null;
+
 // Parse Incoming Data from api.ai 
 $update_response = file_get_contents("php://input");
 $update = json_decode($update_response, true);
@@ -34,10 +39,10 @@ if ($update['result']['action'] === 'bills_gen')
 }
 
 // if action is [bill_specific].
-if ($update['result']['action'] === 'bill_specific')
-{
+// if ($update['result']['action'] === 'bill_specific')
+// {
     include ('inc/_bills-specific.php');
-}
+// }
 
 // if action is [get_member].
 if ($update['result']['action'] === 'get_member') 

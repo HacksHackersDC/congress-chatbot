@@ -1,8 +1,6 @@
 <?php
 
 // Default Var
-$session = '115';
-
 $chamber = strtolower($update["result"]["parameters"]['chamber']);
 $bill_status = strtolower($update["result"]["parameters"]['bill_status']);
 
