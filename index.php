@@ -1,54 +1,56 @@
 <?php
+// Libraries
+include ('lib/bitly.php');
+include ('key.php');
 
-// API.
-include ('key.php'); 
-
-// Variables
-$congress = '115';
-$chamber = 'senate';
-$search_type = 'members';
-$base_url = 'https://api.propublica.org/congress/v1/';
-
-function praseAPI($url) {
-
-    global $key;
-
+// show data for just the bot
+function sendMessage($parameters) {
+    
+    $ua = $_SERVER['HTTP_USER_AGENT'];
+    if (strstr($ua, 'Apache-HttpClient')) {
+        echo json_encode($parameters);        
+    }
+}
+// Basic cURL call to get content. 
+function getData($url){
+    
     $ch = curl_init();
-    $header = array('X-API-Key: '. $key .'');
     curl_setopt($ch, CURLOPT_URL, $url );
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 ); 
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $header ); 
     $result = curl_exec( $ch );
     curl_close($ch);
-
-
+    
     return $result;
-
 }
 
-// User Input values
-$input_name = 'Tim Kaine';
+// Parse Incoming Data from api.ai 
+$update_response = file_get_contents("php://input");
+$update = json_decode($update_response, true);
 
-// Get first name and last name from user input. 
-$name = explode(" ", $input_name);
-$first_name = $name[0];
-$last_name = $name[1];
+// If action is [bills_gen].
+if ($update['result']['action'] === 'bills_gen') 
+{
+    include ('_bills-gen.php');
+}
 
+// if action is [bill_specific].
+if ($update['result']['action'] === 'bill_specific')
+{
+    include ('_bills-specific.php');
+}
 
-// Get list of members, search and find the member by $first_name and $last_name;
-$getmembers = praseAPI( $base_url . '115/senate/members.json');
+// if action is [get_member].
+if ($update['result']['action'] === 'get_member') 
+{
+    include ('_get-member.php');
+}
 
-
-// $last_name = '';
-
-
-
-
-
-// echo '<pre>' . $getmembers . '</pre>';
-
-
-
-
+// Send Response
+sendMessage(array(
+    "source" => $update["result"]["source"],
+    "speech" => $message,
+    "displayText" => $display_text,
+    "contextOut" => array()
+));
 
 ?>
