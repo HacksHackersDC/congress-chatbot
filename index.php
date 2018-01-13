@@ -30,19 +30,19 @@ $update = json_decode($update_response, true);
 // If action is [bills_gen].
 if ($update['result']['action'] === 'bills_gen') 
 {
-    include ('_bills-gen.php');
+    include ('inc/_bills-gen.php');
 }
 
 // if action is [bill_specific].
 if ($update['result']['action'] === 'bill_specific')
 {
-    include ('_bills-specific.php');
+    include ('inc/_bills-specific.php');
 }
 
 // if action is [get_member].
 if ($update['result']['action'] === 'get_member') 
 {
-    include ('_get-member.php');
+    include ('inc/_get-member.php');
 }
 
 // Send Response
